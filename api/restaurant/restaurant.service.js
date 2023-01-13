@@ -4,6 +4,7 @@ const utils = require("../../services/util.service.js");
 
 async function query() {
   const collection = await dbService.getCollection("restaurant");
+  console.log(await collection.find({}).toArray());
   return await collection.find({}).toArray();
 }
 

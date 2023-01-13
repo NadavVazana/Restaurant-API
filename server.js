@@ -22,9 +22,9 @@ if (process.env.NODE_ENV === "production") {
   app.use(cors(corsOptions));
 }
 
+// routes
 const restaurantRoutes = require("./api/restaurant/restaurant.routes");
 
-// routes
 app.use("/api/restaurant", restaurantRoutes);
 
 // Make every server-side-route to match the index.html

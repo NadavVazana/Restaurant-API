@@ -13,7 +13,7 @@ const {
 async function getRestaurants(req, res) {
   try {
     const restaurants = await query();
-    res.send(restaurants);
+    res.json(restaurants);
   } catch (error) {
     res.status(404).send({ err: "Failed to get the list of the restaurants " });
   }
@@ -114,45 +114,3 @@ module.exports = {
   changeProduct,
   removeProductFromRestaurant,
 };
-
-// {
-//               name: "Coke",
-//               photo: "https://images.heb.com/is/image/HEBGrocery/001397056",
-//               price: 3,
-//               category: "Drinks",
-//               saleInfo: {
-//                 promotion: null,
-//                 promotionalPrice: null,
-//                 saleDays: {
-//                   monday: { start: null, end: null },
-//                   tuesday: { start: null, end: null },
-//                   wednesday: { start: null, end: null },
-//                   thursday: { start: null, end: null },
-//                   friday: { start: null, end: null },
-//                   saturday: { start: null, end: null },
-//                   sunday: { start: null, end: null },
-//                 },
-//               },
-//             },
-
-// console.log(
-//   JSON.stringify({
-//     name: "Coke",
-//     photo: "https://images.heb.com/is/image/HEBGrocery/001397056",
-//     price: 3,
-//     category: "Drinks",
-//     saleInfo: {
-//       promotion: null,
-//       promotionalPrice: null,
-//       saleDays: {
-//         monday: { start: null, end: null },
-//         tuesday: { start: null, end: null },
-//         wednesday: { start: null, end: null },
-//         thursday: { start: null, end: null },
-//         friday: { start: null, end: null },
-//         saturday: { start: null, end: null },
-//         sunday: { start: null, end: null },
-//       },
-//     },
-//   })
-// );

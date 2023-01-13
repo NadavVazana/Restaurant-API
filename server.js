@@ -4,7 +4,6 @@ const app = express();
 const http = require("http").createServer(app);
 // Express App Config
 app.use(express.json());
-app.use(cors({ origin: "*", credentials: true }));
 
 // routes
 const restaurantRoutes = require("./api/restaurant/restaurant.routes");

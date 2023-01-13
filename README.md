@@ -56,6 +56,13 @@ and add the new product to the body of the request:
 
 > https://restaurants-api-cdhh.onrender.com/api/restaurant/63c19b041176ece3253b0439
 
+## Time format:
+
+On every restaurant object there is a openingHours prop that will show all the days of the week, and inside of those props there are 2 props: open and close which in each one there is the time of it with the HH:mm format.
+
+
+On every product object there is a saleInfo prop that behave the same as the restaurant but instead of open and close there are the start and end props that represents the hours of the sale (and again with the HH:mm format)
+
 
 ## Technologies:
 

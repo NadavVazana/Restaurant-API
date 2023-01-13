@@ -3,8 +3,9 @@ const dbService = require("../../services/db.service");
 const utils = require("../../services/util.service.js");
 
 async function query() {
+  console.log("here");
   const collection = await dbService.getCollection("restaurant");
-  console.log(await collection.find({}).toArray());
+  console.log("after");
   return await collection.find({}).toArray();
 }
 

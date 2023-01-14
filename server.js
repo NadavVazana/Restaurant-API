@@ -9,7 +9,7 @@ app.use(express.json());
 // routes
 const restaurantRoutes = require("./api/restaurant/restaurant.routes");
 
-app.use("/api/restaurant", restaurantRoutes);
+app.use("/api/restaurants", restaurantRoutes);
 
 const port = process.env.PORT || 3030;
 http.listen(port, () => {

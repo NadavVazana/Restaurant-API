@@ -13,14 +13,20 @@ const {
   changeProduct,
 } = require("./restaurant.controller");
 
+// Restaurants
 router.get("/", getRestaurants);
 router.get("/:restaurantId", getRestaurant);
-router.get("/products/:restaurantId", getRestaurantProducts);
-router.put("/:restaurantId", changeProduct);
-router.put("/", updateRestaurantDetails);
-router.post("/:restaurantId", addProductToRestaurant);
 router.post("/", registerRestaurant);
-router.delete("/", removeRestaurant);
-router.delete("/:restaurantId/:productId", removeProductFromRestaurant);
+router.patch("/:restaurantId", updateRestaurantDetails);
+router.delete("/:restaurantId", removeRestaurant);
+
+// Products
+router.get("/:restaurantId/products", getRestaurantProducts);
+router.post("/:restaurantId/products", addProductToRestaurant);
+router.delete(
+  "/:restaurantId/products/:productId",
+  removeProductFromRestaurant
+);
+router.patch("/:restaurantId/products/:productId", changeProduct);
 
 module.exports = router;

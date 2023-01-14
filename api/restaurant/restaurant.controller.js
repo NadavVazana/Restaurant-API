@@ -15,27 +15,28 @@ async function getRestaurants(req, res) {
     const restaurants = await query();
     res.json(restaurants);
   } catch (error) {
-    res.status(404).send({ err: "Failed to get the list of the restaurants " });
+    res.status(error.status).send(error);
   }
 }
 
 async function registerRestaurant(req, res) {
   try {
     const newRestaurant = req.body;
+    console.log(newRestaurant);
     await addRestaurant(newRestaurant);
-    res.send(`The restaurant that was added: ${JSON.stringify(newRestaurant)}`);
+    res.json(newRestaurant);
   } catch (error) {
-    res.status(404).send({ err: "Failed to add a restaurant" });
+    res.status(error.status).send(error);
   }
 }
 
 async function removeRestaurant(req, res) {
   try {
-    const restaurantId = req.query.id;
+    const restaurantId = req.params.restaurantId;
     await deleteRestaurant(restaurantId);
-    res.send(`Restaurant with the id of: ${restaurantId} has been deleted!`);
+    res.send(`Restaurant has been deleted!`);
   } catch (error) {
-    res.status(404).send(`Failed to remove the restaurant`);
+    res.status(error.status).send(error);
   }
 }
 
@@ -43,20 +44,20 @@ async function getRestaurant(req, res) {
   try {
     const restaurantId = req.params.restaurantId;
     const restaurant = await getRestaurantById(restaurantId);
-    console.log(restaurant);
     res.json(restaurant);
   } catch (error) {
-    res.status(404).send("Failed to get the restaurant");
+    res.status(error.status).send(error);
   }
 }
 
 async function updateRestaurantDetails(req, res) {
   try {
     let updatedRestaurant = req.body;
-    await updateRestaurant(updatedRestaurant);
+    const restaurantId = req.params.restaurantId;
+    await updateRestaurant(updatedRestaurant, restaurantId);
     res.send(`${updatedRestaurant.name} has been updated successfully!`);
   } catch (error) {
-    res.status(404).send("Failed to update the details of this restaurant");
+    res.status(error.status).send(error);
   }
 }
 
@@ -66,7 +67,7 @@ async function getRestaurantProducts(req, res) {
     const products = await getProducts(restaurantId);
     res.json(products);
   } catch (error) {
-    res.status(404).send("Failed to get the products from this restaurant");
+    res.status(error.status).send(error);
   }
 }
 
@@ -75,9 +76,9 @@ async function addProductToRestaurant(req, res) {
     const restaurantId = req.params.restaurantId;
     const newProduct = req.body;
     await addProduct(restaurantId, newProduct);
-    res.send("Product has added!");
+    res.send("Product has been added!");
   } catch (error) {
-    res.status(404).send("Failed to add the product");
+    res.status(error.status).send(error);
   }
 }
 
@@ -85,10 +86,11 @@ async function changeProduct(req, res) {
   try {
     const restaurantId = req.params.restaurantId;
     const product = req.body;
-    await updateProduct(restaurantId, product);
-    res.send("Product has updated!");
+    const productId = req.params.productId;
+    await updateProduct(restaurantId, product, productId);
+    res.send("Product has been updated!");
   } catch (error) {
-    res.status(404).send("Failed to update the product");
+    res.status(error.status).send(error);
   }
 }
 
@@ -99,7 +101,7 @@ async function removeProductFromRestaurant(req, res) {
     await removeProduct(restaurantId, productId);
     res.send("Product has been deleted!");
   } catch (error) {
-    res.status(404).send("Failed to remove the product");
+    res.status(error.status).send(error);
   }
 }
 

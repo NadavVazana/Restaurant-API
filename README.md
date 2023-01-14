@@ -2,6 +2,16 @@
 
 <img src="https://res.cloudinary.com/ds8xkm0ue/image/upload/v1673644270/icons8-restaurant-building-64_hvxhnu.png" />
 
+# Getting Started:
+
+Clone the project and run npm install on the terminal.
+Run npm start to start the server. 
+
+# Testing the API:
+
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/22855452-650e3ca8-fd2e-4fa3-b4ad-7acf984fc91b?action=collection%2Ffork&collection-url=entityId%3D22855452-650e3ca8-fd2e-4fa3-b4ad-7acf984fc91b%26entityType%3Dcollection%26workspaceId%3D713d6f18-5ac9-462b-ad78-41d79a3a4f64)
+
+
 # Base URL
 
 > https://restaurants-api-cdhh.onrender.com/api/restaurant/

@@ -38,33 +38,36 @@ To delete a restaurant, use the **DELETE** HTTP method and add the restaurant id
 
 ## Get restaurant's product list
 
-To get the product list of a restaurant, use the **GET** HTTP method and first add the word **products** to the base url and then the restaurant id. Example:
+To get the product list of a restaurant, use the **GET** HTTP method and first add the restaurant id, then the product id and then the word products. Example:
 
->https://restaurants-api-cdhh.onrender.com/api/restaurant/products/63c19b041176ece3253b0439
+>https://restaurants-api-cdhh.onrender.com/api/restaurant/63c19b041176ece3253b0439/products
 
 
 ## Delete a product from a specific restaurant:
 
-To delete a product from a restaurant, use the **DELETE** HTTP method and and first add the restaurant's id and then the product id to the base url. Example:
+To delete a product from a restaurant, use the **DELETE** HTTP method and and first add the restaurant's id and then the word products and then product id to the base url. Example:
 
-> https://restaurants-api-cdhh.onrender.com/api/restaurant/4e50794a4564614e59713662/63c19b041176ece3253b0439
+> https://restaurants-api-cdhh.onrender.com/api/restaurant/4e50794a4564614e59713662/products/63c19b041176ece3253b0439
 
 ## Update restaurant details:
 
-To update restaurant details use the **PATCH** HTTP method and add the updated restaurant to the body of the request. (The restaurant id should be the same so it could be updated)
+To update restaurant details use the **PATCH** HTTP method and add the updated restaurant to the body of the request.
+Example:
+
+>> https://restaurants-api-cdhh.onrender.com/api/restaurants/63c19b041176ece3253b043a/products/xuDqVcrZwd4c
 
 ## Update restaurant's product:
 
-To update restaurant's product use the **PATCH** HTTP method, add the base url the restaurant's id and add the updated product to the body. (The product id should be the same so it could be updated):
+To update restaurant's product use the **PATCH** HTTP method, add the base url the restaurant's id then the word products and then the product id. (The product id should be the same so it could be updated):
 
-> https://restaurants-api-cdhh.onrender.com/api/restaurant/63c19b041176ece3253b0439
+> https://restaurants-api-cdhh.onrender.com/api/restaurants/63c19b041176ece3253b043a/products/xuDqVcrZwd4c
 
 ## Adding a product to a restaurant:
 
-To add a product to a specific restaurant, use the **POST** HTTP method, add the restaurant's id to the base url,
+To add a product to a specific restaurant, use the **POST** HTTP method, add the restaurant's id to the base url and the the word products,
 and add the new product to the body of the request:
 
-> https://restaurants-api-cdhh.onrender.com/api/restaurant/63c19b041176ece3253b0439
+> http://localhost:3030/api/restaurants/63c19b041176ece3253b043a/products
 
 ## Time format:
 

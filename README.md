@@ -41,11 +41,11 @@ To delete a product from a restaurant, use the **DELETE** HTTP method and and fi
 
 ## Update restaurant details:
 
-To update restaurant details use the **PUT** HTTP method and add the updated restaurant to the body of the request. (The restaurant id should be the same so it could be updated)
+To update restaurant details use the **PATCH** HTTP method and add the updated restaurant to the body of the request. (The restaurant id should be the same so it could be updated)
 
 ## Update restaurant's product:
 
-To update restaurant's product use the **PUT** HTTP method, add the base url the restaurant's id and add the updated product to the body. (The product id should be the same so it could be updated):
+To update restaurant's product use the **PATCH** HTTP method, add the base url the restaurant's id and add the updated product to the body. (The product id should be the same so it could be updated):
 
 > https://restaurants-api-cdhh.onrender.com/api/restaurant/63c19b041176ece3253b0439
 

@@ -3,8 +3,6 @@ import { Request, Response } from "express";
 
 async function getUsers(req: Request, res: Response) {
   try {
-    console.log("here");
-
     const users = await userService.query();
 
     res.json(users);
@@ -18,7 +16,6 @@ async function signUp(req: Request, res: Response) {
     const { firstName, lastName, password, email } = req.body;
     const user = { firstName, lastName, password, email };
     const account = await userService.addUser(user);
-    
 
     res.json(
       `The user with the name of: ${user.firstName} ${user.lastName} has been added!`
@@ -28,7 +25,29 @@ async function signUp(req: Request, res: Response) {
   }
 }
 
+async function removeUser(req: Request, res: Response) {
+  try {
+    const userId = req.params.userId;
+    await userService.deleteUser(userId);
+    res.send(`User with the id of: ${userId} has been removed!`);
+  } catch (error) {
+    res.status(error.status).send(error);
+  }
+}
+
+async function getUserById(req: Request, res: Response) {
+  try {
+    const userId = req.params.userId;
+    const user = await userService.getUser(userId);
+    res.json(user);
+  } catch (error) {
+    res.status(error.status).send(error);
+  }
+}
+
 export const userController = {
   getUsers,
   signUp,
+  getUserById,
+  removeUser,
 };

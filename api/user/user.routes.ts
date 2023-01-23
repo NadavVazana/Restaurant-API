@@ -1,9 +1,10 @@
-const express = require("express");
+import * as express from "express";
 const router = express.Router();
 import { userController } from "./user.controller";
 
-// USERS
 router.get("/", userController.getUsers);
-router.post("/", userController.signUp);
+router.get("/:userId", userController.getUserById);
+
+router.delete("/:userId", userController.removeUser);
 
 export default router;

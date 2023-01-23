@@ -2,18 +2,17 @@ version: "3.8"
 
 services:
   mongo:
-    ports: 
-      - 27018:27017
+    ports:
+      - 27017:27017
     image: mongo
     restart: always
     environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: example
+      MONGO_INITDB_ROOT_USERNAME: nadav
+      MONGO_INITDB_ROOT_PASSWORD: pass
   app:
-      restart: always
-      build: .
-      links: 
-        - mongo
-      ports: 
-        - 3030:3030  
-
+    restart: always
+    build: .
+    links:
+      - mongo
+    ports:
+      - 3030:3030

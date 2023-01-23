@@ -1,4 +1,6 @@
-module.exports = { makeId };
+export const utilService = {
+  makeId,
+};
 
 function makeId(length = 6) {
   var txt = "";

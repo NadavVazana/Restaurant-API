@@ -11,10 +11,21 @@ async function getUsers(req: Request, res: Response) {
   }
 }
 
+async function updateUser(req: Request, res: Response) {
+  try {
+    const user = req.body;
+    const updatedUser = await userService.update(user);
+
+    res.json(updatedUser);
+  } catch (error) {
+    res.status(error.status).send(error);
+  }
+}
+
 async function signUp(req: Request, res: Response) {
   try {
-    const { firstName, lastName, password, email } = req.body;
-    const user = { firstName, lastName, password, email };
+    const { firstName, lastName, password, email, phone } = req.body;
+    const user = { firstName, lastName, password, email, phone };
     const account = await userService.addUser(user);
 
     res.json(
@@ -50,4 +61,5 @@ export const userController = {
   signUp,
   getUserById,
   removeUser,
+  updateUser,
 };

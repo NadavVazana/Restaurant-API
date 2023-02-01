@@ -6,7 +6,6 @@ async function signup(req: Response, res: Request) {
     const userToAdd = req.body;
     const password = userToAdd.password;
     await authService.signupUser(userToAdd);
-
     const user = await authService.loginUser({
       email: userToAdd.email,
       password: password,

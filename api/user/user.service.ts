@@ -40,10 +40,38 @@ async function deleteUser(userId: string) {
   }
 }
 
+async function update(user: {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  _id: string;
+}) {
+  const userToSave = {
+    ...user,
+    _id: new ObjectId(user._id),
+  };
+
+  const updateInfo = await (
+    await collection()
+  ).updateOne({ _id: userToSave._id }, { $set: userToSave });
+
+  if (!updateInfo.acknowledged) {
+    throw new createHttpError.NotFound("Could not update user's details..");
+  }
+  return userToSave;
+}
+
 async function addUser(user: User) {
   const saltRounds = 10;
 
-  if (!user.email || !user.firstName || !user.lastName || !user.password)
+  if (
+    !user.email ||
+    !user.firstName ||
+    !user.lastName ||
+    !user.password ||
+    !user.phone
+  )
     throw new createHttpError.NotFound("All credentials are required!");
 
   user.password = await bcrypt.hash(user.password, saltRounds);
@@ -58,6 +86,7 @@ export const userService = {
   getUser,
   deleteUser,
   getUserByEmail,
+  update,
 };
 
 function NotFoundError(entityType: string, entityId: string) {

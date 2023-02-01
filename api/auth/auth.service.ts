@@ -33,24 +33,36 @@ async function getLoginToken(user: User) {
   return cryptr.encrypt(JSON.stringify(user));
 }
 
-async function logoutUser() {}
-
 async function signupUser(user: User) {
+  const existUser = await (await collection()).findOne({ email: user.email });
+  if (existUser) {
+    throw new createHttpError.Unauthorized("User already exist!");
+  }
+
   const saltRounds = 10;
 
-  if (!user.email || !user.firstName || !user.lastName || !user.password)
+  if (
+    !user.email ||
+    !user.firstName ||
+    !user.lastName ||
+    !user.password ||
+    !user.phone
+  )
     throw new createHttpError.NotFound("All credentials are required!");
 
   user.password = await bcrypt.hash(user.password, saltRounds);
-
-  await (await collection()).insertOne(user);
+  const userToAdd = {
+    ...user,
+    img: "https://res.cloudinary.com/ds8xkm0ue/image/upload/v1674952478/user-square-svgrepo-com_qt82jb.svg",
+  };
+  await (await collection()).insertOne(userToAdd);
   delete user.password;
   return user;
 }
 
 export const authService = {
   loginUser,
-  logoutUser,
+
   signupUser,
   getLoginToken,
 };
